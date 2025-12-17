@@ -22,9 +22,10 @@ jobs:
           python --version
           pip --version
 
-      - name: Install MLflow
+      - name: Install dependencies
         run: |
-          pip install mlflow==2.19.0
+          pip install -r MLProject/conda.yaml || true
+          pip install mlflow==2.19.0 pandas scikit-learn numpy scipy pyarrow
 
       - name: Run MLflow Project
         run: |
