@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.12.7"
 
-      - name: Check Python version
+      - name: Check env
         run: |
           python --version
           pip --version
