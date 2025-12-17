@@ -45,5 +45,3 @@ jobs:
           name: mlflow-artifacts
           path: mlruns
 
-      - name: Complete job
-        run: echo "CI pipeline completed successfully"
