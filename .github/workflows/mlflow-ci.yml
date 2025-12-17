@@ -27,10 +27,23 @@ jobs:
           pip install -r MLProject/conda.yaml || true
           pip install mlflow==2.19.0 pandas scikit-learn numpy scipy pyarrow
 
+      - name: Set MLflow tracking URI
+        run: |
+          echo "MLFLOW_TRACKING_URI=file:./mlruns" >> $GITHUB_ENV
+
       - name: Run MLflow Project
         run: |
           mlflow run MLProject --env-manager=local
 
-      - name: Get latest MLflow run_id
+      - name: Install python dependencies (post)
         run: |
-          ls -la mlruns || true
+          pip list
+
+      - name: Upload MLflow artifacts to GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlflow-artifacts
+          path: mlruns
+
+      - name: Complete job
+        run: echo "CI pipeline completed successfully"
