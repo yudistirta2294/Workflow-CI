@@ -1,0 +1,35 @@
+name: MLflow CI Training
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  train-model:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.7"
+
+      - name: Check Python version
+        run: |
+          python --version
+          pip --version
+
+      - name: Install MLflow
+        run: |
+          pip install mlflow==2.19.0
+
+      - name: Run MLflow Project
+        run: |
+          mlflow run MLProject
+
+      - name: Get latest MLflow run_id
+        run: |
+          ls -la mlruns || true
