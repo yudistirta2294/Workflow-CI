@@ -6,8 +6,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 
-mlflow.set_experiment("Exam Score Modelling")
-
 data = pd.read_csv("exam_score_preprocessed.csv")
 
 X = data.drop("exam_score", axis=1)
